@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Doanh Nghiệp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #084A87;
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #084A87 0%, #0a5a9c 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #084A87;
+            padding: 0.8rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            background-color: #f9f9f9;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #084A87;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #084A87;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .benefits-content h2 {
+            font-size: 2rem;
+            color: #084A87;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-item:before {
+            content: "✓";
+            color: #084A87;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .benefit-text p {
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Add testimonials section styles */
+        .testimonials {
+            padding: 4rem 2rem;
+            background-color: #f9f9f9;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #084A87;
+        }
+
+        .testimonial-stars {
+            color: #f59e0b;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            color: #084A87;
+            font-weight: bold;
+        }
+
+        .testimonial-role {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Add stats section styles */
+        .stats {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #084A87 0%, #0a5a9c 100%);
+            color: white;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            opacity: 0.9;
+        }
+
+        /* Add pricing section styles */
+        .pricing {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 2px solid #e5e5e5;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: #084A87;
+        }
+
+        .pricing-card.featured {
+            border-color: #084A87;
+            box-shadow: 0 4px 16px rgba(8, 74, 135, 0.2);
+            transform: scale(1.05);
+        }
+
+        .pricing-card h3 {
+            color: #084A87;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            color: #084A87;
+            margin: 1.5rem 0;
+            font-weight: bold;
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin: 2rem 0;
+            color: #666;
+        }
+
+        .pricing-features li {
+            list-style: none;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            color: #084A87;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .pricing-button {
+            background-color: #084A87;
+            color: white;
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        .pricing-button:hover {
+            background-color: #063a68;
+        }
+
+        /* Add FAQ section styles */
+        .faq {
+            padding: 4rem 2rem;
+            background-color: #f9f9f9;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background-color: #084A87;
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #063a68;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            color: #666;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: #084A87;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button-white {
+            background-color: white;
+            color: #084A87;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #063a68;
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-column a {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">LOGO</div>
+            <nav>
+                <a href="#features">Tính năng</a>
+                <a href="#benefits">Lợi ích</a>
+                <a href="#pricing">Giá</a>
+                <a href="#contact">Liên hệ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Giải pháp kinh doanh toàn diện cho doanh nghiệp bạn</h1>
+            <p>Chúng tôi cung cấp dịch vụ chuyên nghiệp giúp doanh nghiệp phát triển nhanh chóng</p>
+            <button class="cta-button" onclick="handleCTA()">Khám phá ngay</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="section-title">Tính năng nổi bật</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Nhanh chóng</h3>
+                    <p>Giải pháp nhanh và hiệu quả được tối ưu hóa cho hiệu suất cao</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>An toàn</h3>
+                    <p>Bảo mật hàng đầu với các công nghệ mã hóa hiện đại nhất</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Chuyên nghiệp</h3>
+                    <p>Dịch vụ chuyên nghiệp được hỗ trợ bởi đội ngũ chuyên gia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="benefits-container">
+            <div class="benefits-grid">
+                <div class="benefits-content">
+                    <h2>Tại sao chọn chúng tôi?</h2>
+                    <div class="benefit-item">
+                        <div class="benefit-text">
+                            <h4>Kinh nghiệm 10+ năm</h4>
+                            <p>Với hơn một thập kỷ kinh nghiệm, chúng tôi hiểu rõ nhu cầu thị trường</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-text">
+                            <h4>Hỗ trợ 24/7</h4>
+                            <p>Đội ngũ hỗ trợ khách hàng luôn sẵn sàng giúp bạn bất kỳ lúc nào</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-text">
+                            <h4>Giải pháp tùy chỉnh</h4>
+                            <p>Mỗi giải pháp được thiết kế riêng cho nhu cầu cụ thể của bạn</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background-color: #f0f0f0; border-radius: 8px; height: 300px; display: flex; align-items: center; justify-content: center; color: #999;">
+                    [Hình ảnh minh họa]
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title">Đánh giá từ khách hàng</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-text">"Dịch vụ tuyệt vời! Đội ngũ chuyên nghiệp và hỗ trợ rất tốt. Tôi rất hài lòng với kết quả."</div>
+                    <div class="testimonial-author">Nguyễn Văn A</div>
+                    <div class="testimonial-role">CEO - Công ty XYZ</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-text">"Giải pháp chính xác mà tôi cần. Giúp chúng tôi tiết kiệm thời gian và chi phí đáng kể."</div>
+                    <div class="testimonial-author">Trần Thị B</div>
+                    <div class="testimonial-role">Giám đốc - Công ty ABC</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-text">"Tôi giới thiệu dịch vụ này cho tất cả bạn bè của mình. Họ cũng đều rất hài lòng!"</div>
+                    <div class="testimonial-author">Lê Văn C</div>
+                    <div class="testimonial-role">Chủ tịch - Công ty DEF</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>1000+</h3>
+                    <p>Khách hàng hài lòng</p>
+                </div>
+                <div class="stat-item">
+                    <h3>99.9%</h3>
+                    <p>Tỷ lệ uptime</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15+</h3>
+                    <p>Năm kinh nghiệm</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Dự án thành công</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <h2 class="section-title">Gói dịch vụ</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Cơ bản</h3>
+                    <div class="pricing-price">99.000<span>đ/tháng</span></div>
+                    <ul class="pricing-features">
+                        <li>Hỗ trợ cơ bản</li>
+                        <li>Tối đa 10 người dùng</li>
+                        <li>5 GB dung lượng</li>
+                        <li>Email hỗ trợ</li>
+                    </ul>
+                    <button class="cta-button pricing-button">Chọn gói</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>⭐ Chuyên nghiệp</h3>
+                    <div class="pricing-price">299.000<span>đ/tháng</span></div>
+                    <ul class="pricing-features">
+                        <li>Hỗ trợ ưu tiên 24/7</li>
+                        <li>Tối đa 50 người dùng</li>
+                        <li>100 GB dung lượng</li>
+                        <li>Email & Phone support</li>
+                        <li>Analytics nâng cao</li>
+                    </ul>
+                    <button class="cta-button pricing-button">Chọn gói</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Doanh nghiệp</h3>
+                    <div class="pricing-price">999.000<span>đ/tháng</span></div>
+                    <ul class="pricing-features">
+                        <li>Hỗ trợ 24/7 riêng</li>
+                        <li>Người dùng không giới hạn</li>
+                        <li>Dung lượng không giới hạn</li>
+                        <li>Tích hợp API tùy chỉnh</li>
+                        <li>Báo cáo hàng tháng</li>
+                    </ul>
+                    <button class="cta-button pricing-button">Liên hệ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="faq-container">
+            <h2 class="section-title">Câu hỏi thường gặp</h2>
+            <div class="faq-item active">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Làm thế nào để bắt đầu?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Bạn chỉ cần đăng ký tài khoản, chọn gói phù hợp và làm theo hướng dẫn từng bước. Đội ngũ của chúng tôi sẽ giúp bạn trong quá trình thiết lập.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Có thể hủy bất kỳ lúc nào không?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Có, bạn có thể hủy gói của mình bất kỳ lúc nào. Không có phí hủy ẩn. Chúng tôi sẽ xóa dữ liệu của bạn theo yêu cầu.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Dữ liệu của tôi có an toàn không?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Tất cả dữ liệu được mã hóa và lưu trữ trên máy chủ an toàn. Chúng tôi tuân thủ các tiêu chuẩn bảo mật quốc tế và cập nhật thường xuyên.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Có hỗ trợ khách hàng không?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Có, chúng tôi cung cấp hỗ trợ 24/7 qua email, điện thoại và chat. Đội ngũ chuyên gia của chúng tôi sẵn sàng trợ giúp bất kỳ lúc nào.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-section-container">
+            <h2>Sẵn sàng bắt đầu?</h2>
+            <p>Liên hệ với chúng tôi hôm nay để biết thêm chi tiết và nhận tư vấn miễn phí</p>
+            <button class="cta-button cta-button-white" onclick="handleCTA()">Liên hệ ngay</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Về chúng tôi</h3>
+                    <a href="#about">Giới thiệu công ty</a>
+                    <a href="#team">Đội ngũ</a>
+                    <a href="#blog">Blog</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Dịch vụ</h3>
+                    <a href="#service1">Dịch vụ 1</a>
+                    <a href="#service2">Dịch vụ 2</a>
+                    <a href="#service3">Dịch vụ 3</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Hỗ trợ</h3>
+                    <a href="#support">Trung tâm hỗ trợ</a>
+                    <a href="#faq">Câu hỏi thường gặp</a>
+                    <a href="#docs">Tài liệu</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Liên hệ</h3>
+                    <a href="mailto:info@example.com">Email: info@example.com</a>
+                    <a href="tel:+84123456789">Phone: +84 (123) 456-789</a>
+                    <a href="#">Địa chỉ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Công ty của bạn. Bảo lưu mọi quyền.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleCTA() {
+            alert('Cảm ơn bạn! Chúng tôi sẽ liên hệ với bạn sớm nhất.');
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
