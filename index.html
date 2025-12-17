@@ -1,1000 +1,271 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TMG</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: #1a1a1a;
-            background-color: #ffffff;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #084A87 0%, #0a5a9c 100%);
-            color: white;
-            padding: 1.2rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 8px 32px rgba(8, 74, 135, 0.15);
-            backdrop-filter: blur(10px);
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: #fff;
-        }
-
-        nav {
-            display: flex;
-            gap: 3rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        nav a:hover {
-            opacity: 0.7;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                display: none;
-            }
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #084A87 0%, #0f6db3 100%);
-            color: white;
-            padding: 8rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/></g></g></svg>');
-            pointer-events: none;
-        }
-
-        .hero-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #0f6db3 0%, #084A87 100%);
-            color: white;
-            padding: 1rem 2.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-            box-shadow: 0 10px 25px rgba(8, 74, 135, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(8, 74, 135, 0.4);
-        }
-
-        .cta-button:active {
-            transform: translateY(-1px);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
-        }
-
-        .features-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(135deg, #084A87 0%, #0f6db3 100%);
-            margin: 1rem auto 3rem;
-            border-radius: 2px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(8, 74, 135, 0.08);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(8, 74, 135, 0.1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(8, 74, 135, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            background: linear-gradient(135deg, #084A87 0%, #0f6db3 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .feature-card h3 {
-            color: #1a1a1a;
-            margin-bottom: 0.75rem;
-            font-size: 1.35rem;
-            font-weight: 700;
-        }
-
-        .feature-card p {
-            color: #666;
-            line-height: 1.7;
-            font-weight: 400;
-        }
-
-        /* Benefits Section */
-        .benefits {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .benefits-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .benefits-content h2 {
-            font-size: 2.5rem;
-            color: #1a1a1a;
-            margin-bottom: 2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .benefit-item {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            align-items: flex-start;
-        }
-
-        .benefit-item:before {
-            content: "✓";
-            color: white;
-            font-size: 1.3rem;
-            font-weight: bold;
-            flex-shrink: 0;
-            background: linear-gradient(135deg, #084A87 0%, #0f6db3 100%);
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-top: 4px;
-        }
-
-        .benefit-text h4 {
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .benefit-text p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 768px) {
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
-        }
-
-        .testimonials-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(8, 74, 135, 0.08);
-            border: 1px solid rgba(8, 74, 135, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(8, 74, 135, 0.2);
-        }
-
-        .testimonial-stars {
-            color: #1b7ce6;
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-        }
-
-        .testimonial-text {
-            color: #555;
-            margin-bottom: 2rem;
-            font-style: italic;
-            line-height: 1.8;
-            font-weight: 500;
-        }
-
-        .testimonial-author {
-            color: #1a1a1a;
-            font-weight: 700;
-            font-size: 1.05rem;
-        }
-
-        .testimonial-role {
-            color: #999;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #084A87 0%, #0f6db3 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stats::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/></g></g></svg>');
-            pointer-events: none;
-        }
-
-        .stats-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .stat-item p {
-            opacity: 0.95;
-            font-weight: 500;
-            font-size: 1.05rem;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .pricing-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .pricing-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 16px;
-            border: 2px solid #e5e5e5;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-8px);
-            border-color: transparent;
-            box-shadow: 0 20px 40px rgba(8, 74, 135, 0.2);
-        }
-
-        .pricing-card.featured {
-            border: 2px solid transparent;
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(135deg, #084A87 0%, #0f6db3 100%) border-box;
-            box-shadow: 0 20px 40px rgba(8, 74, 135, 0.2);
-            transform: scale(1.05);
-        }
-
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-8px);
-        }
-
-        .pricing-card h3 {
-            color: #1a1a1a;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .pricing-price {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #084A87 0%, #0f6db3 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 2rem 0;
-            font-weight: 800;
-        }
-
-        .pricing-price span {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .pricing-features {
-            text-align: left;
-            margin: 2.5rem 0;
-            color: #666;
-        }
-
-        .pricing-features li {
-            list-style: none;
-            padding: 0.75rem 0;
-            padding-left: 2rem;
-            position: relative;
-            font-weight: 500;
-        }
-
-        .pricing-features li:before {
-            content: "✓";
-            color: white;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            background: linear-gradient(135deg, #084A87 0%, #0f6db3 100%);
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-size: 0.85rem;
-        }
-
-        .pricing-button {
-            background: linear-gradient(135deg, #084A87 0%, #0f6db3 100%);
-            color: white;
-            width: 100%;
-            margin-top: 2rem;
-            border-radius: 50px;
-            padding: 1rem;
-        }
-
-        .pricing-button:hover {
-            box-shadow: 0 10px 25px rgba(8, 74, 135, 0.3);
-        }
-
-        /* FAQ Section */
-        .faq {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: white;
-            margin-bottom: 1.5rem;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #e5e5e5;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            box-shadow: 0 8px 24px rgba(8, 74, 135, 0.1);
-        }
-
-        .faq-question {
-            background: linear-gradient(135deg, #f0f7ff 0%, #e8f1ff 100%);
-            color: #1a1a1a;
-            padding: 1.75rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .faq-item.active .faq-question {
-            background: linear-gradient(135deg, #084A87 0%, #0f6db3 100%);
-            color: white;
-        }
-
-        .faq-toggle {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-            font-weight: bold;
-        }
-
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            padding: 2rem;
-            color: #666;
-            display: none;
-            background: white;
-            line-height: 1.8;
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #084A87 0%, #0f6db3 100%);
-            color: white;
-            padding: 5rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/></g></g></svg>');
-            pointer-events: none;
-        }
-
-        .cta-section-container {
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-
-        .cta-button-white {
-            background: linear-gradient(135deg, #0f6db3 0%, #084A87 100%);
-            color: white;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #1a1a1a;
-            color: white;
-            padding: 4rem 2rem;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-column h3 {
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .footer-column a {
-            display: block;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            margin-bottom: 0.75rem;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .footer-column a:hover {
-            color: white;
-            transform: translateX(4px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
-            font-weight: 500;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero {
-                padding: 5rem 2rem;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .benefits-content h2 {
-                font-size: 1.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .section-title {
-                font-size: 1.6rem;
-            }
-
-            nav {
-                gap: 1.5rem;
-            }
-
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>TMG Global Solutions | Premier Outsourcing</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles.css">
 </head>
+
 <body>
-    <!-- Header -->
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
     <header>
-        <div class="header-container">
-            <div class="logo">LOGO</div>
+        <div class="container nav-flex">
+            <a href="#" class="logo-text">
+                <img src="./assets/TMG.png" alt="TMG Global Solutions Logo" class="logo-img" width="95" height="40" />
+            </a>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#services">Products</a>
+                <a href="#price">Pricing</a>
+                <a href="#career">Careers</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-container">
-            <h1>Giải pháp kinh doanh toàn diện cho doanh nghiệp bạn</h1>
-            <p>Chúng tôi cung cấp dịch vụ chuyên nghiệp giúp doanh nghiệp phát triển nhanh chóng</p>
-            <button class="cta-button" onclick="handleCTA()">Khám phá ngay</button>
+        <div class="container">
+            <h1 class="hero-title reveal">WE SCALE<br>YOU EVOLVE.</h1>
+            <p class="hero-p reveal">Premier outsourcing services: customer service, designing, media that help
+                businesses scale without losing their identity.</p>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="features-container">
-            <h2 class="section-title">Tính năng nổi bật</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Nhanh chóng</h3>
-                    <p>Giải pháp nhanh và hiệu quả được tối ưu hóa cho hiệu suất cao</p>
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>Customer Service • Graphic Design • Omnichannel • Branding • Growth • Support • Scale • </span>
+            <span>Customer Service • Graphic Design • Omnichannel • Branding • Growth • Support • Scale • </span>
+        </div>
+    </div>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="reveal">
+                    <span class="about-tag">About TMG</span>
+                    <h2>We help organizations accelerate growth.</h2>
+                    <p style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 20px;">
+                        When you outsource with us, you get a high-quality team who feels in-house.
+                    </p>
+                    <p style="color: var(--text-gray);">
+                        After noticing that start-ups and small businesses struggle to meet customer demands, we
+                        launched TMG. We focus on on-demand outsource services that redefine business processes.
+                    </p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>An toàn</h3>
-                    <p>Bảo mật hàng đầu với các công nghệ mã hóa hiện đại nhất</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💼</div>
-                    <h3>Chuyên nghiệp</h3>
-                    <p>Dịch vụ chuyên nghiệp được hỗ trợ bởi đội ngũ chuyên gia</p>
+                <div class="reveal" style="background: var(--light-blue); padding: 40px; border-radius: 4px;">
+                    <p style="font-style: italic; font-size: 1.2rem; color: var(--primary);">
+                        "As a next-generation BPO, we are dedicated to providing personalized solutions that meet your
+                        brand’s specific needs."
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="benefits" id="benefits">
-        <div class="benefits-container">
-            <div class="benefits-grid">
-                <div class="benefits-content">
-                    <h2>Tại sao chọn chúng tôi?</h2>
-                    <div class="benefit-item">
-                        <div class="benefit-text">
-                            <h4>Kinh nghiệm 10+ năm</h4>
-                            <p>Với hơn một thập kỷ kinh nghiệm, chúng tôi hiểu rõ nhu cầu thị trường</p>
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="reveal"
+                style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 60px; text-align: center;">Our
+                Products</h2>
+
+            <div class="service-card reveal">
+                <h3>01. Customer Service Outsource</h3>
+                <ul class="service-list">
+                    <li>Up to 24/7/365 coverage (incl. weekends & holidays)</li>
+                    <li>Full support team management: From hiring to performance</li>
+                    <li>Seamless multi-channel: Calls, Emails, Chats, Social Media</li>
+                    <li>Omnichannel: Chat, email, SMS, WhatsApp, Voice...</li>
+                </ul>
+            </div>
+
+            <div class="service-card reveal">
+                <h3>02. Designing Service Outsource</h3>
+                <ul class="service-list">
+                    <li>Flexible Coverage: On-demand support to match peak periods</li>
+                    <li>Multi-Format: Graphic, Branding, Social, Ads, Web, Print</li>
+                    <li>End-to-End: Briefing, Concept, Revisions to Final Delivery</li>
+                    <li>Unlimited outsource graphic design assistance</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="values">
+        <div class="container">
+            <h2 class="reveal" style="font-family: var(--font-display); font-size: 3rem; text-align: center;">Our Core
+                Values</h2>
+            <div class="values-grid">
+                <div class="value-item reveal">
+                    <h4>People First</h4>
+                    <p style="color: var(--text-gray);">Treat people right and invest in them. They will amaze you.</p>
+                </div>
+                <div class="value-item reveal">
+                    <h4>Leadership</h4>
+                    <p style="color: var(--text-gray);">Leadership is the foundation on which everything builds upon.
+                    </p>
+                </div>
+                <div class="value-item reveal">
+                    <h4>Growth Mindset</h4>
+                    <p style="color: var(--text-gray);">No matter how far you've come, there’s always a new mountain to
+                        climb.</p>
+                </div>
+                <div class="value-item reveal">
+                    <h4>Standard</h4>
+                    <p style="color: var(--text-gray);">Do great work with good price.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="price-section" id="price">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="reveal">
+                    <h2
+                        style="font-family: var(--font-display); font-size: 3rem; color: var(--primary); line-height: 1.1; margin-bottom: 30px;">
+                        Get Your Personalized Pricing</h2>
+                    <p style="color: var(--text-gray); font-size: 1.1rem; margin-bottom: 20px;">
+                        Talk with our team to get pricing on your CX needs. Every situation is unique, and we want to
+                        make sure we have a good understanding of your goals.
+                    </p>
+                </div>
+                <div class="reveal">
+                    <form action="#">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name *" required>
                         </div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-text">
-                            <h4>Hỗ trợ 24/7</h4>
-                            <p>Đội ngũ hỗ trợ khách hàng luôn sẵn sàng giúp bạn bất kỳ lúc nào</p>
+                        <div class="form-group">
+                            <input type="text" name="company" placeholder="Company">
                         </div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-text">
-                            <h4>Giải pháp tùy chỉnh</h4>
-                            <p>Mỗi giải pháp được thiết kế riêng cho nhu cầu cụ thể của bạn</p>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email *" required>
                         </div>
-                    </div>
-                </div>
-                <div style="background: url(https://www.ourbusinessladder.com/wp-content/uploads/2024/07/mastering-print-on-demand-marketing-01-scaled.jpg) no-repeat center center/cover; border-radius: 8px; height: 300px; display: flex; align-items: center; justify-content: center; color: #999;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="testimonials-container">
-            <h2 class="section-title">Đánh giá từ khách hàng</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <div class="testimonial-text">"Dịch vụ tuyệt vời! Đội ngũ chuyên nghiệp và hỗ trợ rất tốt. Tôi rất hài lòng với kết quả."</div>
-                    <div class="testimonial-author">Nguyễn Văn A</div>
-                    <div class="testimonial-role">CEO - Công ty XYZ</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <div class="testimonial-text">"Giải pháp chính xác mà tôi cần. Giúp chúng tôi tiết kiệm thời gian và chi phí đáng kể."</div>
-                    <div class="testimonial-author">Trần Thị B</div>
-                    <div class="testimonial-role">Giám đốc - Công ty ABC</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <div class="testimonial-text">"Tôi giới thiệu dịch vụ này cho tất cả bạn bè của mình. Họ cũng đều rất hài lòng!"</div>
-                    <div class="testimonial-author">Lê Văn C</div>
-                    <div class="testimonial-role">Chủ tịch - Công ty DEF</div>
+                        <div class="form-group">
+                            <textarea rows="4" name="description" placeholder="Brief description..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Request Pricing</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>1000+</h3>
-                    <p>Khách hàng hài lòng</p>
-                </div>
-                <div class="stat-item">
-                    <h3>99.9%</h3>
-                    <p>Tỷ lệ uptime</p>
-                </div>
-                <div class="stat-item">
-                    <h3>15+</h3>
-                    <p>Năm kinh nghiệm</p>
-                </div>
-                <div class="stat-item">
-                    <h3>50+</h3>
-                    <p>Dự án thành công</p>
-                </div>
+    <section class="career" id="career">
+        <div class="container">
+            <div class="career-box reveal">
+                <h2
+                    style="font-family: var(--font-display); font-size: 2.5rem; color: var(--primary); margin-bottom: 20px;">
+                    Join the TMG Family</h2>
+                <p style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 30px;">
+                    Working with us goes beyond a job. It’s a career where purpose meets potential. We empower every
+                    individual to make a real impact and thrive both personally and professionally.
+                </p>
+                <a href="mailto:contact.official.tmg@gmail.com"
+                    style="color: var(--primary); font-weight: 800; text-decoration: underline; font-size: 1.2rem;">View
+                    Open Roles →</a>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="pricing-container">
-            <h2 class="section-title">Gói dịch vụ</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Cơ bản</h3>
-                    <div class="pricing-price">99.000<span>đ/tháng</span></div>
-                    <ul class="pricing-features">
-                        <li>Hỗ trợ cơ bản</li>
-                        <li>Tối đa 10 người dùng</li>
-                        <li>5 GB dung lượng</li>
-                        <li>Email hỗ trợ</li>
-                    </ul>
-                    <button class="cta-button pricing-button">Chọn gói</button>
-                </div>
-                <div class="pricing-card featured">
-                    <h3>⭐ Chuyên nghiệp</h3>
-                    <div class="pricing-price">299.000<span>đ/tháng</span></div>
-                    <ul class="pricing-features">
-                        <li>Hỗ trợ ưu tiên 24/7</li>
-                        <li>Tối đa 50 người dùng</li>
-                        <li>100 GB dung lượng</li>
-                        <li>Email & Phone support</li>
-                        <li>Analytics nâng cao</li>
-                    </ul>
-                    <button class="cta-button pricing-button">Chọn gói</button>
-                </div>
-                <div class="pricing-card">
-                    <h3>Doanh nghiệp</h3>
-                    <div class="pricing-price">999.000<span>đ/tháng</span></div>
-                    <ul class="pricing-features">
-                        <li>Hỗ trợ 24/7 riêng</li>
-                        <li>Người dùng không giới hạn</li>
-                        <li>Dung lượng không giới hạn</li>
-                        <li>Tích hợp API tùy chỉnh</li>
-                        <li>Báo cáo hàng tháng</li>
-                    </ul>
-                    <button class="cta-button pricing-button">Liên hệ</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq">
-        <div class="faq-container">
-            <h2 class="section-title">Câu hỏi thường gặp</h2>
-            <div class="faq-item active">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Làm thế nào để bắt đầu?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    Bạn chỉ cần đăng ký tài khoản, chọn gói phù hợp và làm theo hướng dẫn từng bước. Đội ngũ của chúng tôi sẽ giúp bạn trong quá trình thiết lập.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Có thể hủy bất kỳ lúc nào không?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    Có, bạn có thể hủy gói của mình bất kỳ lúc nào. Không có phí hủy ẩn. Chúng tôi sẽ xóa dữ liệu của bạn theo yêu cầu.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Dữ liệu của tôi có an toàn không?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    Tất cả dữ liệu được mã hóa và lưu trữ trên máy chủ an toàn. Chúng tôi tuân thủ các tiêu chuẩn bảo mật quốc tế và cập nhật thường xuyên.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Có hỗ trợ khách hàng không?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    Có, chúng tôi cung cấp hỗ trợ 24/7 qua email, điện thoại và chat. Đội ngũ chuyên gia của chúng tôi sẵn sàng trợ giúp bất kỳ lúc nào.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="cta-section-container">
-            <h2>Sẵn sàng bắt đầu?</h2>
-            <p>Liên hệ với chúng tôi hôm nay để biết thêm chi tiết và nhận tư vấn miễn phí</p>
-            <button class="cta-button cta-button-white" onclick="handleCTA()">Liên hệ ngay</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
+    <footer id="contact">
+        <div class="container">
             <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>Về chúng tôi</h3>
-                    <a href="#about">Giới thiệu công ty</a>
-                    <a href="#team">Đội ngũ</a>
-                    <a href="#blog">Blog</a>
+                <div>
+                    <img src="./assets/TMG-white.png" alt="TMG Global Solutions Logo" class="footer-logo" width="95"
+                        height="40" />
+                    <p style="color: #cbd5e1; max-width: 400px;">
+                        Premier outsourcing services: customer service, designing, media that help businesses scale
+                        without losing their identity.
+                    </p>
                 </div>
-                <div class="footer-column">
-                    <h3>Dịch vụ</h3>
-                    <a href="#service1">Dịch vụ 1</a>
-                    <a href="#service2">Dịch vụ 2</a>
-                    <a href="#service3">Dịch vụ 3</a>
+                <div class="footer-links">
+                    <h4 style="margin-bottom: 20px;">Navigation</h4>
+                    <a href="#about">About Us</a>
+                    <a href="#services">Products</a>
+                    <a href="#price">Pricing</a>
+                    <a href="#career">Careers</a>
                 </div>
-                <div class="footer-column">
-                    <h3>Hỗ trợ</h3>
-                    <a href="#support">Trung tâm hỗ trợ</a>
-                    <a href="#faq">Câu hỏi thường gặp</a>
-                    <a href="#docs">Tài liệu</a>
-                </div>
-                <div class="footer-column">
-                    <h3>Liên hệ</h3>
-                    <a href="mailto:info@example.com">Email: info@example.com</a>
-                    <a href="tel:+84123456789">Phone: +84 (123) 456-789</a>
-                    <a href="#">Địa chỉ</a>
+                <div class="footer-links">
+                    <h4 style="margin-bottom: 20px;">Contact Us</h4>
+                    <div style="color: #cbd5e1; font-size: 0.9rem; line-height: 2;">
+                        <p>📍 2F Kim Anh Building, No. 1, #78, Duy Tan St., Cau Giay Dist, Ha Noi</p>
+                        <p>📧 <a style="display: inline;"
+                                href="mailto:contact.official.tmg@gmail.com">contact.official.tmg@gmail.com</a></p>
+                        <p>📞 <a style="display: inline;" href="tel:+84 988 657 614">+84 988 657 614</a></p>
+                        <div class="footer-social">
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                                    viewBox="0 0 32 32">
+                                    <path
+                                        d="M16,2c-7.732,0-14,6.268-14,14,0,6.566,4.52,12.075,10.618,13.588v-9.31h-2.887v-4.278h2.887v-1.843c0-4.765,2.156-6.974,6.835-6.974,.887,0,2.417,.174,3.043,.348v3.878c-.33-.035-.904-.052-1.617-.052-2.296,0-3.183,.87-3.183,3.13v1.513h4.573l-.786,4.278h-3.787v9.619c6.932-.837,12.304-6.74,12.304-13.897,0-7.732-6.268-14-14-14Z">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                                    viewBox="0 0 32 32">
+                                    <path
+                                        d="M26.111,3H5.889c-1.595,0-2.889,1.293-2.889,2.889V26.111c0,1.595,1.293,2.889,2.889,2.889H26.111c1.595,0,2.889-1.293,2.889-2.889V5.889c0-1.595-1.293-2.889-2.889-2.889ZM10.861,25.389h-3.877V12.87h3.877v12.519Zm-1.957-14.158c-1.267,0-2.293-1.034-2.293-2.31s1.026-2.31,2.293-2.31,2.292,1.034,2.292,2.31-1.026,2.31-2.292,2.31Zm16.485,14.158h-3.858v-6.571c0-1.802-.685-2.809-2.111-2.809-1.551,0-2.362,1.048-2.362,2.809v6.571h-3.718V12.87h3.718v1.686s1.118-2.069,3.775-2.069,4.556,1.621,4.556,4.975v7.926Z"
+                                        fill-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                                    viewBox="0 0 32 32">
+                                    <path
+                                        d="M10.202,2.098c-1.49,.07-2.507,.308-3.396,.657-.92,.359-1.7,.84-2.477,1.619-.776,.779-1.254,1.56-1.61,2.481-.345,.891-.578,1.909-.644,3.4-.066,1.49-.08,1.97-.073,5.771s.024,4.278,.096,5.772c.071,1.489,.308,2.506,.657,3.396,.359,.92,.84,1.7,1.619,2.477,.779,.776,1.559,1.253,2.483,1.61,.89,.344,1.909,.579,3.399,.644,1.49,.065,1.97,.08,5.771,.073,3.801-.007,4.279-.024,5.773-.095s2.505-.309,3.395-.657c.92-.36,1.701-.84,2.477-1.62s1.254-1.561,1.609-2.483c.345-.89,.579-1.909,.644-3.398,.065-1.494,.081-1.971,.073-5.773s-.024-4.278-.095-5.771-.308-2.507-.657-3.397c-.36-.92-.84-1.7-1.619-2.477s-1.561-1.254-2.483-1.609c-.891-.345-1.909-.58-3.399-.644s-1.97-.081-5.772-.074-4.278,.024-5.771,.096m.164,25.309c-1.365-.059-2.106-.286-2.6-.476-.654-.252-1.12-.557-1.612-1.044s-.795-.955-1.05-1.608c-.192-.494-.423-1.234-.487-2.599-.069-1.475-.084-1.918-.092-5.656s.006-4.18,.071-5.656c.058-1.364,.286-2.106,.476-2.6,.252-.655,.556-1.12,1.044-1.612s.955-.795,1.608-1.05c.493-.193,1.234-.422,2.598-.487,1.476-.07,1.919-.084,5.656-.092,3.737-.008,4.181,.006,5.658,.071,1.364,.059,2.106,.285,2.599,.476,.654,.252,1.12,.555,1.612,1.044s.795,.954,1.051,1.609c.193,.492,.422,1.232,.486,2.597,.07,1.476,.086,1.919,.093,5.656,.007,3.737-.006,4.181-.071,5.656-.06,1.365-.286,2.106-.476,2.601-.252,.654-.556,1.12-1.045,1.612s-.955,.795-1.608,1.05c-.493,.192-1.234,.422-2.597,.487-1.476,.069-1.919,.084-5.657,.092s-4.18-.007-5.656-.071M21.779,8.517c.002,.928,.755,1.679,1.683,1.677s1.679-.755,1.677-1.683c-.002-.928-.755-1.679-1.683-1.677,0,0,0,0,0,0-.928,.002-1.678,.755-1.677,1.683m-12.967,7.496c.008,3.97,3.232,7.182,7.202,7.174s7.183-3.232,7.176-7.202c-.008-3.97-3.233-7.183-7.203-7.175s-7.182,3.233-7.174,7.203m2.522-.005c-.005-2.577,2.08-4.671,4.658-4.676,2.577-.005,4.671,2.08,4.676,4.658,.005,2.577-2.08,4.671-4.658,4.676-2.577,.005-4.671-2.079-4.676-4.656h0">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                                    viewBox="0 0 32 32">
+                                    <path
+                                        d="M16,2C8.268,2,2,8.268,2,16c0,5.931,3.69,11.001,8.898,13.041-.122-1.108-.233-2.811,.049-4.02,.254-1.093,1.642-6.959,1.642-6.959,0,0-.419-.839-.419-2.079,0-1.947,1.128-3.4,2.533-3.4,1.194,0,1.771,.897,1.771,1.972,0,1.201-.765,2.997-1.16,4.661-.33,1.393,.699,2.53,2.073,2.53,2.488,0,4.401-2.624,4.401-6.411,0-3.352-2.409-5.696-5.848-5.696-3.983,0-6.322,2.988-6.322,6.076,0,1.203,.464,2.494,1.042,3.195,.114,.139,.131,.26,.097,.402-.106,.442-.342,1.393-.389,1.588-.061,.256-.203,.311-.468,.187-1.749-.814-2.842-3.37-2.842-5.424,0-4.416,3.209-8.472,9.25-8.472,4.857,0,8.631,3.461,8.631,8.086,0,4.825-3.042,8.708-7.265,8.708-1.419,0-2.752-.737-3.209-1.608,0,0-.702,2.673-.872,3.328-.316,1.216-1.169,2.74-1.74,3.67,1.31,.406,2.702,.624,4.145,.624,7.732,0,14-6.268,14-14S23.732,2,16,2Z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Công ty của bạn. Bảo lưu mọi quyền.</p>
+            <div
+                style="margin-top: 80px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: #94a3b8; font-size: 0.8rem;">
+                © 2025 TMG GLOBAL SOLUTIONS CO., LTD. ALL RIGHTS RESERVED.
             </div>
         </div>
     </footer>
 
     <script>
-        function handleCTA() {
-            alert('Cảm ơn bạn! Chúng tôi sẽ liên hệ với bạn sớm nhất.');
-        }
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+        // --- CURSOR ---
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
+        window.addEventListener('mousemove', (e) => {
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+            outline.animate({ left: e.clientX + 'px', top: e.clientY + 'px' }, { duration: 400, fill: 'forwards' });
         });
 
-        function toggleFAQ(element) {
-            const faqItem = element.parentElement;
-            faqItem.classList.toggle('active');
-        }
+        // --- REVEAL ON SCROLL ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
+
 </html>
