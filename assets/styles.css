@@ -28,6 +28,10 @@ body {
   line-height: 1.6;
 }
 
+ul, ol {
+  list-style-position: inside;
+}
+
 /* --- CUSTOM CURSOR --- */
 .cursor-dot,
 .cursor-outline {
@@ -390,6 +394,35 @@ input:focus {
   transition: 0.3s;
 }
 
+.btn-submit[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+  background: #051a31;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(8,74,135,0.12);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.2,1,0.3,1), opacity 0.3s ease;
+  z-index: 11000;
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.toast.success { background: var(--primary); color: white; }
+.toast.error { background: #c53030; color: white; }
+
 /* --- CAREER --- */
 .career {
   padding: 120px 0;
@@ -398,10 +431,61 @@ input:focus {
 }
 
 .career-box {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 60px;
   border: 2px dashed var(--primary);
+  text-align: left;
+}
+
+/* Jobs grid & cards */
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.job-card {
+  background: white;
+  padding: 28px;
+  border: 1px solid var(--border);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.job-card h3 {
+  font-family: var(--font-display);
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.job-meta {
+  color: var(--text-gray);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.job-card p { margin-top: 8px; }
+
+.job-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(8,74,135,0.05); }
+
+.btn-apply {
+  margin-top: auto;
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  align-self: flex-start;
+}
+
+@media (max-width: 992px) {
+  .career-box { padding: 36px; }
 }
 
 /* --- FOOTER --- */
@@ -454,4 +538,10 @@ footer {
   margin-top: 16px;
   display: flex;
   gap: 15px;
+}
+
+.job-detail {
+  padding: 180px 0 120px;
+  max-width: 800px;
+  margin: 0 auto;
 }
