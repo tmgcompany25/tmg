@@ -32,7 +32,24 @@
                 <a href="#career">Careers</a>
                 <a href="#contact">Contact</a>
             </nav>
+
+            <!-- Mobile hamburger -->
+            <button class="hamburger" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
+
+        <!-- Mobile overlay and slideout nav -->
+        <div class="mobile-overlay" hidden></div>
+        <nav class="mobile-nav" id="mobile-menu" aria-hidden="true">
+            <a href="#about">About</a>
+            <a href="#services">Products</a>
+            <a href="#price">Pricing</a>
+            <a href="#career">Careers</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
 
     <section class="hero">
@@ -266,6 +283,53 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- MOBILE MENU / HAMBURGER ---
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.getElementById('mobile-menu');
+        const overlay = document.querySelector('.mobile-overlay');
+
+        function openMenu() {
+            hamburger.classList.add('is-active');
+            hamburger.setAttribute('aria-expanded', 'true');
+            mobileNav.classList.add('open');
+            mobileNav.setAttribute('aria-hidden', 'false');
+            overlay.hidden = false;
+            // small delay to allow CSS transition
+            setTimeout(() => overlay.classList.add('active'), 10);
+            document.body.style.overflow = 'hidden';
+            // focus first link for accessibility
+            const firstLink = mobileNav.querySelector('a');
+            if (firstLink) firstLink.focus();
+        }
+
+        function closeMenu() {
+            hamburger.classList.remove('is-active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            mobileNav.classList.remove('open');
+            mobileNav.setAttribute('aria-hidden', 'true');
+            overlay.classList.remove('active');
+            setTimeout(() => overlay.hidden = true, 300);
+            document.body.style.overflow = '';
+            hamburger.focus();
+        }
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                if (hamburger.getAttribute('aria-expanded') === 'true') closeMenu();
+                else openMenu();
+            });
+        }
+
+        if (overlay) overlay.addEventListener('click', closeMenu);
+
+        // Close menu on link click
+        mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && hamburger.getAttribute('aria-expanded') === 'true') closeMenu();
+        });
     </script>
 </body>
 
