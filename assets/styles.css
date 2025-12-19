@@ -446,7 +446,9 @@ header {
 .value-item:hover * {
   color: white !important;
 }
-
+.value-item svg {
+  color: var(--primary);
+}
 .value-item h4 {
   font-family: var(--font-display);
   color: var(--primary);
