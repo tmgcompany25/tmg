@@ -410,6 +410,11 @@ header {
   gap: 20px;
 }
 
+/* One item per row (e.g. short lists that should not sit in two columns) */
+.service-list--stacked {
+  grid-template-columns: 1fr;
+}
+
 .service-list li {
   position: relative;
   padding-left: 25px;
